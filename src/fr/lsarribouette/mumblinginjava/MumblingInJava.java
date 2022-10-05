@@ -78,8 +78,14 @@ public class MumblingInJava {
 		do {
 			valide = estUnEleve(prenomJoueur);
 			if (!valide) {
-				System.out.println("Tu ne fais pas partie de la classe ! Saisis un autre prénom :");
-				prenomJoueur = console.nextLine();
+				if (prenomJoueur.equals("Rémi") || prenomJoueur.equals("Brahim")) {
+					System.out.println("Reviens vite en présentiel avec nous ! :)");
+					System.out.println("Saisis un autre prénom :");
+					prenomJoueur = console.nextLine();
+				} else {
+					System.out.println("Tu ne fais pas partie de la classe ! Saisis un autre prénom :");
+					prenomJoueur = console.nextLine();
+				}
 			}
 		} while (!valide);
 		System.out.printf("Bienvenue %s !%n", prenomJoueur);
