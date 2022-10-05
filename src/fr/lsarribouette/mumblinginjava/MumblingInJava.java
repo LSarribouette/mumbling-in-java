@@ -7,10 +7,12 @@ public class MumblingInJava {
 	public static final int DIM1 = 4;
 	public static final int DIM2 = 8;
 	
+	public static String[][] classePositions = new String[DIM1][DIM2];
+	
 	public static void main(String[] args) {
 		
 		String prenomJoueur;
-		String[][] classePositions = new String[DIM1][DIM2];
+		
 		// je remplis mon tableau (sans les distanciels)
 		 classePositions[0][0] = "Thibault";
 		 classePositions[0][1] = "Quentin";
@@ -44,9 +46,14 @@ public class MumblingInJava {
 		 classePositions[3][5] = "Nicolas";
 		 classePositions[3][6] = "Xavier A";
 		 classePositions[3][7] = "";
-		int ligne = -1;
-		int colonne = -1;
-		String voisinDroite;
+		boolean valide = false;
+		int ligne;
+		int colonne;
+		int voisin;
+		final int VOISINDROITE = 1;
+		final int VOISINGAUCHE = 2;
+		final int VOISINDEVANT = 3;
+		final int VOISINDERRIERE = 4;
 		String voirPlanClasse;
 		
 		Scanner console = new Scanner(System.in);
@@ -65,37 +72,64 @@ public class MumblingInJava {
 		
 		//Saisie
 		System.out.println("Prêt ? Alors commence par me donner ton prénom :");
-		//prenomJoueur = console.nextLine();
-		prenomJoueur = "Thomas";
+		prenomJoueur = console.nextLine();
 		
 		//Répéter jusqu'à avoir un nom d'élève
 		do {
-			//Position du joueur
-			for (int i=0; i < DIM1; i++) {
-				for (int j=0; j < DIM2; j++) {
-					if(prenomJoueur == classePositions[i][j]) {
-						ligne = i;
-						colonne = j;
-						System.out.println("la ligne est " + ligne + " et la colonne est " + colonne);
-						}
-					}
-				}
-		} while (ligne == -1);
-		
-		//Cherche voisin de droite (i; j+1)
-		if (colonne < DIM2-1) {
-			voisinDroite = classePositions[ligne][colonne+1];
-			if (classePositions[ligne][colonne+1] == "") {
-				System.out.println("Tu as un vide à ta droite.");
-			} else {
-				System.out.println("Ton voisin à droite est "+voisinDroite);
+			valide = estUnEleve(prenomJoueur);
+			if (!valide) {
+				System.out.println("Tu ne fais pas partie de la classe ! Saisis un autre prénom :");
+				prenomJoueur = console.nextLine();
 			}
-		} else {
-			System.out.println("Tu n'as pas de voisin à droite.");
+		} while (!valide);
+		System.out.printf("Bienvenue %s !%n", prenomJoueur);
+		
+		//Donner la position dans la classe
+		ligne = estEnPosition(prenomJoueur,'x');
+		colonne = estEnPosition(prenomJoueur, 'y');
+		System.out.printf("Ta position dans la classe est [%d][%d].%n", ligne, colonne);
+		
+		//Voisins
+		for (voisin=1; voisin<=4; voisin++) {
+			switch (voisin) {
+			case VOISINDROITE:
+				if (colonne < DIM2-1 && !classePositions[ligne][colonne+1].equals("")) {
+				String voisinDroite = classePositions[ligne][colonne+1];
+				System.out.println("Ton voisin à droite est "+voisinDroite+".");
+				} else {
+					System.out.println("Tu n'as pas de voisin à droite.");
+				}
+				break;
+				
+			case VOISINGAUCHE:
+				if (colonne > 0 && !classePositions[ligne][colonne-1].equals("")) {
+				String voisinGauche = classePositions[ligne][colonne-1];
+				System.out.println("Ton voisin à gauche est "+voisinGauche+".");
+				} else {
+					System.out.println("Tu n'as pas de voisin à gauche.");
+				}			
+				break;
+				
+			case VOISINDEVANT:
+				if (ligne > 0 && !classePositions[ligne-1][colonne].equals("")) {
+				String voisinDevant = classePositions[ligne-1][colonne];
+				System.out.println("Ton voisin devant est "+voisinDevant+".");
+				} else {
+					System.out.println("Tu n'as pas de voisin devant toi.");
+				}		
+				break;
+				
+			case VOISINDERRIERE:
+				if (ligne < DIM1-1 && !classePositions[ligne+1][colonne].equals("")) {
+				String voisinDerriere = classePositions[ligne+1][colonne];
+				System.out.println("Ton voisin derrière est "+voisinDerriere+".");
+				} else {
+					System.out.println("Tu n'as pas de voisin derrière toi.");
+				}
+				break;
+			}
 		}
-		
-		
-		
+	
 		//Choix d'afficher la classe
 		System.out.println("Si tu souhaites afficher le plan de classe, saisis \"oui\". " 
 				+ "Sinon, merci d'avoir joué ! :)");
@@ -107,7 +141,40 @@ public class MumblingInJava {
 		console.close();
 		
 	}
+	
+	public static boolean estUnEleve(String saisie) {
+		// parcourt chaque case du tableau et cherche si la saisie est un prénom de la classe
+		// retourne vrai si c'est le cas
+		boolean res = false;
+		for (int i=0; i<DIM1; i++) {
+			for (int j=0; j<DIM2; j++) {
+				if(saisie.equals(classePositions[i][j])) {
+					res = true;
+				} 
+			}
+		}
+		return res;
+	}
+	
+	public static int estEnPosition(String saisie, char choixCoord) {
+		// parcourt chaque case du tableau et cherche les coordonnées de la position du prénom saisi
+		// retourne au choix la ligne (x) ou la colonne (y)
+		int x=0;
+		int y=0;
+		char coordRetournee = choixCoord;
+		for (int i=0; i<DIM1; i++) {
+			for (int j=0; j<DIM2; j++) {
+				if(saisie.equals(classePositions[i][j])) {
+					x = i;
+					y = j;
+				} 
+			}
+		}
+		return (coordRetournee=='x') ? x : y;
+	}
+	
 	public static void afficheClasse() {
+		// affiche le plan de la classe
 		String[][] classe = new String[DIM1][DIM2];
 			// je remplis mon tableau (sans les distanciels)
 		classe[0][0] = "Thibault";
