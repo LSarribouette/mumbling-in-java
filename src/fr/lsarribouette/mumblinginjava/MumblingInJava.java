@@ -11,8 +11,7 @@ public class MumblingInJava {
 	
 	public static void main(String[] args) {
 		
-		String prenomJoueur;
-		
+		boolean testing = true;		
 		// je remplis mon tableau (sans les distanciels)
 		 classePositions[0][0] = "Thibault";
 		 classePositions[0][1] = "Quentin";
@@ -46,6 +45,7 @@ public class MumblingInJava {
 		 classePositions[3][5] = "Nicolas";
 		 classePositions[3][6] = "Xavier A";
 		 classePositions[3][7] = "";
+		String prenomJoueur;
 		boolean valide = false;
 		int ligne;
 		int colonne;
@@ -54,6 +54,10 @@ public class MumblingInJava {
 		final int VOISINGAUCHE = 2;
 		final int VOISINDEVANT = 3;
 		final int VOISINDERRIERE = 4;
+		String voisinDroite;
+		String voisinGauche;
+		String voisinDevant;
+		String voisinDerriere;
 		String voirPlanClasse;
 		
 		Scanner console = new Scanner(System.in);
@@ -93,45 +97,88 @@ public class MumblingInJava {
 		//Donner la position dans la classe
 		ligne = estEnPosition(prenomJoueur,'x');
 		colonne = estEnPosition(prenomJoueur, 'y');
-		System.out.printf("Ta position dans la classe est [%d][%d].%n", ligne, colonne);
+		if (testing) {
+			System.out.printf("Ta position dans la classe est [%d][%d].%n", ligne, colonne);
+		}
 		
 		//Voisins
 		for (voisin=1; voisin<=4; voisin++) {
 			switch (voisin) {
 			case VOISINDROITE:
 				if (colonne < DIM2-1 && !classePositions[ligne][colonne+1].equals("")) {
-				String voisinDroite = classePositions[ligne][colonne+1];
-				System.out.println("Ton voisin à droite est "+voisinDroite+".");
+				voisinDroite = classePositions[ligne][colonne+1];
+				if (testing) {
+					System.out.println("Ton voisin à droite est "+voisinDroite+".");
+				}
 				} else {
-					System.out.println("Tu n'as pas de voisin à droite.");
+					voisinDroite = "non";
+					if (testing) {
+						System.out.println("Tu n'as pas de voisin à droite.");
+					}
 				}
 				break;
 				
 			case VOISINGAUCHE:
 				if (colonne > 0 && !classePositions[ligne][colonne-1].equals("")) {
-				String voisinGauche = classePositions[ligne][colonne-1];
-				System.out.println("Ton voisin à gauche est "+voisinGauche+".");
+				voisinGauche = classePositions[ligne][colonne-1];
+				if (testing) {
+					System.out.println("Ton voisin à gauche est "+voisinGauche+".");
+				}
 				} else {
-					System.out.println("Tu n'as pas de voisin à gauche.");
+					voisinGauche = "non";
+					if (testing) {
+						System.out.println("Tu n'as pas de voisin à gauche.");
+					}
 				}			
 				break;
 				
 			case VOISINDEVANT:
 				if (ligne > 0 && !classePositions[ligne-1][colonne].equals("")) {
-				String voisinDevant = classePositions[ligne-1][colonne];
-				System.out.println("Ton voisin devant est "+voisinDevant+".");
+				voisinDevant = classePositions[ligne-1][colonne];
+				if (testing) {
+					System.out.println("Ton voisin devant est "+voisinDevant+".");
+				}
 				} else {
-					System.out.println("Tu n'as pas de voisin devant toi.");
+					voisinDevant = "non";
+					if (testing) {
+						System.out.println("Tu n'as pas de voisin devant toi.");
+					}
 				}		
 				break;
 				
 			case VOISINDERRIERE:
 				if (ligne < DIM1-1 && !classePositions[ligne+1][colonne].equals("")) {
-				String voisinDerriere = classePositions[ligne+1][colonne];
-				System.out.println("Ton voisin derrière est "+voisinDerriere+".");
-				} else {
-					System.out.println("Tu n'as pas de voisin derrière toi.");
+				voisinDerriere = classePositions[ligne+1][colonne];
+				if (testing) {
+					System.out.println("Ton voisin derrière est "+voisinDerriere+".");
 				}
+				} else {
+					voisinDerriere = "non";
+					if (testing) {
+						System.out.println("Tu n'as pas de voisin derrière toi.");
+					}
+				}
+				break;
+			}
+		}
+		
+		//Faire deviner les voisins
+		for (voisin=1; voisin<=4; voisin++) {
+			switch (voisin) {
+			case VOISINDROITE:
+
+				break;
+				
+			case VOISINGAUCHE:
+		
+				break;
+				
+			case VOISINDEVANT:
+
+				break;
+				
+			case VOISINDERRIERE:
+
 				break;
 			}
 		}
