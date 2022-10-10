@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MumblingInJava {
 	
-	private static boolean testing = true;	
+	private static boolean testing = false;	
 	
 	static Scanner console;
 	
@@ -45,14 +45,8 @@ public class MumblingInJava {
 		do {
 			valide = estUnEleve(prenomJoueur);
 			if (!valide) {
-				if (prenomJoueur.equalsIgnoreCase("Rémi") || prenomJoueur.equalsIgnoreCase("Brahim")) {
-					System.out.println("Reviens vite en présentiel avec nous ! :)");
-					System.out.println("Saisis un autre prénom :");
-					prenomJoueur = console.nextLine();
-				} else {
-					System.out.println("Ce prénom ne fait pas partie de la classe ! Saisis un autre prénom :");
-					prenomJoueur = console.nextLine();
-				}
+				System.out.println("Ce prénom ne fait pas partie de la classe ! Saisis un autre prénom :");
+				prenomJoueur = console.nextLine();
 			}
 		} while (!valide);
 		System.out.printf("Bienvenue %s !%n", prenomJoueur);
@@ -125,7 +119,7 @@ public class MumblingInJava {
 				 classePositions[1][0] = "Akim";
 				 classePositions[1][1] = "Thomas";
 				 classePositions[1][2] = "";
-				 classePositions[1][3] = "";
+				 classePositions[1][3] = "Brahim";
 				 classePositions[1][4] = "";
 				 classePositions[1][5] = "Marie";
 				 classePositions[1][6] = "Lauranne";
@@ -137,7 +131,7 @@ public class MumblingInJava {
 				 classePositions[2][4] = "";
 				 classePositions[2][5] = "Jonathan";
 				 classePositions[2][6] = "Lucie";
-				 classePositions[2][7] = "";
+				 classePositions[2][7] = "Rémi";
 				 classePositions[3][0] = "";
 				 classePositions[3][1] = "Théo";
 				 classePositions[3][2] = "Kantin";
@@ -153,7 +147,8 @@ public class MumblingInJava {
 		System.out.println("Bienvenu.e dans ce petit jeu, l'objectif est simple : "
 				+ "te rappeler -- deviner ? -- le nom de ton ou tes voisins.");
 		System.out.println("Quelques infos : ");
-		System.out.println("- le plan de la classe est celui du vendredi 30 septembre");
+		System.out.println("- le plan de la classe est celui du lundi 10 octobre,");
+		System.out.println("- les covidés sont considérés sur place (ils ont leur ordi après tout),");
 		System.out.println("- on peut avoir au maximum 4 voisins : un à droite, "
 				+ "un à gauche, un devant et un derrière");
 		System.out.println("- un poste vide ou une allée, ce n'est pas un voisin.");
@@ -288,7 +283,7 @@ public class MumblingInJava {
 		classe[1][0] = "Akim    ";
 		classe[1][1] = "Thomas  ";
 		classe[1][2] = "        ";
-		classe[1][3] = "        ";
+		classe[1][3] = "Brahim  ";
 		classe[1][4] = "        ";
 		classe[1][5] = "Marie   ";
 		classe[1][6] = "Lauranne";
@@ -300,7 +295,7 @@ public class MumblingInJava {
 		classe[2][4] = "        ";
 		classe[2][5] = "Jonathan";
 		classe[2][6] = "Lucie   ";
-		classe[2][7] = "        ";
+		classe[2][7] = "Rémi    ";
 		classe[3][0] = "        ";
 		classe[3][1] = "Théo    ";
 		classe[3][2] = "Kantin  ";
