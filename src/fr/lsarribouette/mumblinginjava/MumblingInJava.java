@@ -119,7 +119,7 @@ public class MumblingInJava {
 				 classePositions[1][0] = "Akim";
 				 classePositions[1][1] = "Thomas";
 				 classePositions[1][2] = "";
-				 classePositions[1][3] = "";
+				 classePositions[1][3] = "Julien";
 				 classePositions[1][4] = "";
 				 classePositions[1][5] = "Marie";
 				 classePositions[1][6] = "Lauranne";
@@ -133,9 +133,9 @@ public class MumblingInJava {
 				 classePositions[2][6] = "Lucie";
 				 classePositions[2][7] = "Rémi";
 				 classePositions[3][0] = "";
-				 classePositions[3][1] = "Théo";
-				 classePositions[3][2] = "Kantin";
-				 classePositions[3][3] = "Romain";
+				 classePositions[3][1] = "Malo";
+				 classePositions[3][2] = "Théo";
+				 classePositions[3][3] = "Aris";
 				 classePositions[3][4] = "";
 				 classePositions[3][5] = "Nicolas";
 				 classePositions[3][6] = "Xavier A";
