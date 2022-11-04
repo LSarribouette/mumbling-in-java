@@ -64,9 +64,20 @@ public class Salle {
 	public int getNbCoursDispense() {
 		return nbCoursDispense;
 	}
-
+	
+	public String toString() {
+		return "Les cours ont lieu dans la salle numéro " 
+				+ numero 
+				+ " qui est agencée avec "
+				+ dimensionLignes
+				+ " rangées de "
+				+ dimensionColonnes
+				+ " bureaux maximum.";
+	}
+	
 	/**
-	 * Une procédure pour ajouter un nouveau cours dispensé dans une instance de salle
+	 * Une procédure pour ajouter un nouveau Cours dispensé dans une instance de salle
+	 * (association unidirectionnelle)
 	 * @param i
 	 */
 	public void ajouterCoursDispense(Cours c) {
@@ -77,19 +88,15 @@ public class Salle {
 	}
 	
 	/**
-	 * Une procédure qui affiche des informations sur une instance de salle
-	 * et ses cours
+	 * Une procédure pour afficher le nombre d'instances Cours liées à une instance de Salle
 	 */
-	public void afficherInfos() {
-		System.out.println("Les cours ont lieu dans la salle numéro "+numero+" qui est agencée avec "+dimensionLignes
-				+" rangées de "+dimensionColonnes+" bureaux maximum.");
+	public void afficherCoursDispenses() {
 		if(nbCoursDispense>0) {
 			System.out.println("Les cours dispensés sont : ");
 			for(int i=0; i<nbCoursDispense; i++) {
-				System.out.println("   - \""+coursDispense[i]+"\""); //coursDispense.toString()
+				System.out.println("   - "+coursDispense[i].getLibelle()); //coursDispense.toString()
 			}
 		}
-		System.out.println();
 	}
 	
 	/**

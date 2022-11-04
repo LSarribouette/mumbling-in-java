@@ -7,9 +7,9 @@ public class TestCours {
 
 	public static void main(String[] args) {
 		Cours algo = new Cours("Algorithmique", "Marie");
-		algo.afficher();
+		System.out.println(algo);
 		
 		Cours initjava = new Cours("Initiation à Java", "Julien");
-		initjava.afficher();
+		System.out.println(initjava);
 	}
 }

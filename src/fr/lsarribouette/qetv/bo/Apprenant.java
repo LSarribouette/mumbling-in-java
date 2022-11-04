@@ -34,13 +34,6 @@ public class Apprenant {
         nbApprenants++;
     }
     
-    public void ajouterCoursSuivis(Cours c) {
-    	if(nbCoursSuivis < coursSuivis.length) {
-			coursSuivis[nbCoursSuivis] = c;
-			nbCoursSuivis++;
-		}
-    }
-    
     public static int getNbApprenants() {
         return nbApprenants;
     }
@@ -65,22 +58,37 @@ public class Apprenant {
 	public void setPromo(String promo) {
 		this.promo = promo;
 	}
+	
+    public String toString() {
+    	return "L'apprenant.e " 
+    			+ prenom 
+    			+ " est dans la promo " 
+    			+ promo;
+    }
 
-	/**
-	 * Une procédure pour afficher des informations sur une instance d'apprenant
+    /**
+     * Une procédure pour ajouter un nouveau Cours dans une instance d'Apprenant
+     * (association bidirectionnelle)
+     * @param c
+     */
+    public void ajouterCoursSuivis(Cours c) {
+    	if(nbCoursSuivis < coursSuivis.length) {
+			coursSuivis[nbCoursSuivis] = c;
+			nbCoursSuivis++;
+		}
+    }
+    
+    /**
+	 * Une procédure pour afficher le nombre d'instances Cours liées à une instance de Apprenant
 	 */
-	public void afficher() {
-        System.out.println("L'apprenant.e " + prenom + " est dans la promo " + promo);
+	public void afficherCoursSuivis() {
         if(nbCoursSuivis>0) {
         	System.out.println("Il/elle suit les cours : ");
         	for(int i=0; i<nbCoursSuivis; i++) {
-        		System.out.println("   - "+coursSuivis[i]);
+        		System.out.println("   - "+coursSuivis[i].getLibelle());
         	}
         	System.out.println();
         }
     }
-    
-    public String toString() {
-    	return this.prenom;
-    }
+	
 }

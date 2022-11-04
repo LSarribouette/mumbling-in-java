@@ -6,9 +6,9 @@ public class TestApprenant {
 
 	public static void main(String[] args) {
         Apprenant lauranne = new Apprenant("Lauranne", "CDA");
-        lauranne.afficher();
+        System.out.println(lauranne);
         Apprenant pierrick = new Apprenant("Pierrick", "D2WM");
-        pierrick.afficher();
+        System.out.println(pierrick);
         System.out.println("Il y a " + Apprenant.getNbApprenants() + " apprenants dans la promo.");
     }
 }

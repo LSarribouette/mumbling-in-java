@@ -6,7 +6,7 @@ public class TestSalle {
 
 	public static void main(String[] args) {
 		Salle salle202 = new Salle(202, 4, 8);
-		salle202.afficherInfos();
+		System.out.println(salle202);
 		salle202.afficherPlan();
 	}
 

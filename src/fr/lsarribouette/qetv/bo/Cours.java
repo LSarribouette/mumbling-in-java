@@ -39,7 +39,22 @@ public class Cours {
 	}
 	
 	/**
-	 * Une procédure pour ajouter un nouvel apprenant dans une instance de cours
+	 * @return the libelle
+	 */
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public String toString() { //todo : ajouter dates
+		return "Le cours n°"
+				+ numero
+				+ " \""+libelle+"\" est dispensé par "
+				+ formateur;		
+	}
+	
+	/**
+	 * Une procédure pour ajouter un nouvel Apprenant dans une instance de Cours
+	 * (association bidirectionnelle)
 	 * @param a
 	 */
 	public void ajouterEleve(Apprenant a) {
@@ -51,22 +66,15 @@ public class Cours {
 	}
 	
 	/**
-	 * Une procédure pour afficher des informations sur une instance de cours
-	 * et ses apprenants 
+	 * Une procédure pour afficher le nombre d'instances Apprenant liées à une instance de Cours
 	 */
-	public void afficher() {
-		System.out.println("Le cours n°"+numero+" \""+libelle+"\" est dispensé par "+formateur);
+	public void afficherEleves() {
 		if(nbEleves>0) {
 			System.out.println("Les élèves participant à ce cours sont : ");
 			for(int i=0; i<nbEleves; i++) {
-			System.out.println("   - "+eleve[i]); //eleve[i].toString ou bien eleve[i].afficher() ?
+			System.out.println("   - "+eleve[i].getPrenom());
 			}
 		}
 		System.out.println();
-		
-	}
-	
-	public String toString() {
-		return this.libelle;
 	}
 }
